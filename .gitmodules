@@ -25,3 +25,6 @@
 [submodule "tw-sentiment-radar"]
 	path = tw-sentiment-radar
 	url = https://github.com/gsinvest017-ai/tw-sentiment-radar.git
+[submodule "gs-scraper"]
+	path = gs-scraper
+	url = https://github.com/gsinvest017-ai/gs-scraper.git
