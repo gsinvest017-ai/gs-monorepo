@@ -28,3 +28,7 @@
 [submodule "gs-scraper"]
 	path = gs-scraper
 	url = https://github.com/gsinvest017-ai/gs-scraper.git
+[submodule "trading-SySTEM"]
+	path = trading-SySTEM
+	url = https://github.com/gsinvest017-ai/trading-SySTEM.git
+	branch = dev

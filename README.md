@@ -15,13 +15,8 @@ GS Invest 統一 monorepo — 以 **git submodules** 管理所有子專案，保
 | gs-zipline-tej | Zipline + TEJ 台灣回測框架 | [link](https://github.com/gsinvest017-ai/gs-zipline-tej) |
 | tw-news-board | 台灣新聞看板 | [link](https://github.com/gsinvest017-ai/tw-news-board) |
 | tw-sentiment-radar | 台股情緒雷達 | [link](https://github.com/gsinvest017-ai/tw-sentiment-radar) |
-
-### 待加入（尚無 GitHub remote）
-
-| 路徑 | 狀態 |
-|------|------|
-| `/home/kevin/gs-scraper` | 需先 `git init` + push 到 GitHub |
-| `/home/gsinvest000/.../trading-SySTEM` | 需確認路徑可存取並建立 remote |
+| gs-scraper | 量化資料爬蟲 (QUANTDATA) | [link](https://github.com/gsinvest017-ai/gs-scraper) |
+| trading-SySTEM | 實盤交易系統 (gb10, branch: dev) | [link](https://github.com/gsinvest017-ai/trading-SySTEM) |
 
 ## 快速開始
 
@@ -54,7 +49,7 @@ git submodule update --init --recursive
 - **ci-all.yml** — push 到 main / PR 時，自動偵測變動的 submodule 並平行跑各自 CI（Python pytest / Node npm test）。
 - **release.yml** — `workflow_dispatch` 觸發，在所有（或指定）submodule 打協調版本 tag。
 
-> 需要在 GitHub repo Settings → Secrets 加入 `GH_PAT`（具 `repo` scope）才能讓 release workflow push tag 到各 submodule。
+> `GH_PAT` secret 已設定（2026-06-02）。
 
 ## packages/
 
