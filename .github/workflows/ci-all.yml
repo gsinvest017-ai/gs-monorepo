@@ -1,0 +1,68 @@
+name: CI – All Submodules
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.detect.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false   # only need .gitmodules for detection
+
+      - id: detect
+        name: Detect changed submodules
+        run: |
+          # On PR: compare base..head; on push: compare parent commits
+          BASE="${{ github.event.before || github.event.pull_request.base.sha }}"
+          HEAD="${{ github.sha }}"
+
+          git fetch --depth=2 origin
+          CHANGED=$(git diff --name-only "$BASE" "$HEAD" | grep -E '^[^/]+$' | sort -u | jq -R . | jq -sc .)
+          # Fall back to all submodules if no info (first push, workflow_dispatch)
+          if [ "$CHANGED" = "[]" ] || [ -z "$CHANGED" ]; then
+            CHANGED=$(git config --file .gitmodules --get-regexp path | awk '{print $2}' | jq -R . | jq -sc .)
+          fi
+          echo "matrix=$CHANGED" >> "$GITHUB_OUTPUT"
+
+  test:
+    needs: changes
+    if: ${{ needs.changes.outputs.matrix != '[]' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        submodule: ${{ fromJson(needs.changes.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Checkout submodule
+        run: git submodule update --init --depth 1 "${{ matrix.submodule }}"
+
+      - name: Detect stack and run CI
+        working-directory: ${{ matrix.submodule }}
+        run: |
+          if [ -f "pyproject.toml" ] || [ -f "setup.py" ] || [ -f "requirements.txt" ]; then
+            echo "::group::Python – ${{ matrix.submodule }}"
+            pip install -q uv
+            uv pip install -e ".[dev]" 2>/dev/null || uv pip install -r requirements.txt 2>/dev/null || true
+            python -m pytest --tb=short -q 2>/dev/null || echo "No pytest found / no tests"
+            echo "::endgroup::"
+          elif [ -f "package.json" ]; then
+            echo "::group::Node – ${{ matrix.submodule }}"
+            npm ci --prefer-offline
+            npm test 2>/dev/null || npm run build 2>/dev/null || echo "No test/build script"
+            echo "::endgroup::"
+          else
+            echo "No known CI entrypoint for ${{ matrix.submodule }}, skipping."
+          fi

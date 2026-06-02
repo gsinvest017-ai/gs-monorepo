@@ -1,0 +1,27 @@
+[submodule "autogo"]
+	path = autogo
+	url = https://github.com/gsinvest017-ai/autogo.git
+[submodule "gs-claude-config"]
+	path = gs-claude-config
+	url = https://github.com/gsinvest017-ai/gs-claude-config.git
+[submodule "gs-gh-summary"]
+	path = gs-gh-summary
+	url = https://github.com/gsinvest017-ai/gs-gh-summary.git
+[submodule "gs-risk-manager"]
+	path = gs-risk-manager
+	url = https://github.com/gsinvest017-ai/gs-risk-manager.git
+[submodule "gs-strategy"]
+	path = gs-strategy
+	url = https://github.com/gsinvest017-ai/gs-strategy.git
+[submodule "gs-trading-portal"]
+	path = gs-trading-portal
+	url = https://github.com/gsinvest017-ai/gs-trading-portal.git
+[submodule "gs-zipline-tej"]
+	path = gs-zipline-tej
+	url = https://github.com/gsinvest017-ai/gs-zipline-tej.git
+[submodule "tw-news-board"]
+	path = tw-news-board
+	url = https://github.com/gsinvest017-ai/tw-news-board.git
+[submodule "tw-sentiment-radar"]
+	path = tw-sentiment-radar
+	url = https://github.com/gsinvest017-ai/tw-sentiment-radar.git

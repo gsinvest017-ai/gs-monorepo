@@ -1,0 +1,46 @@
+name: Release – Coordinated Tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version tag (e.g. v2025.06.01)"
+        required: true
+      submodules:
+        description: "Comma-separated list (leave blank for all)"
+        required: false
+
+jobs:
+  tag-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.GH_PAT }}   # needs repo scope to push tags to submodules
+
+      - name: Tag each submodule
+        env:
+          VERSION: ${{ inputs.version }}
+          FILTER: ${{ inputs.submodules }}
+        run: |
+          git config --global user.email "ci@gsinvest.com.tw"
+          git config --global user.name "GS Release Bot"
+
+          git submodule foreach '
+            NAME=$(basename $PWD)
+            if [ -n "$FILTER" ] && ! echo "$FILTER" | grep -qw "$NAME"; then
+              echo "Skipping $NAME (not in filter)"
+              exit 0
+            fi
+            echo "Tagging $NAME @ $VERSION"
+            git tag "$VERSION" -m "Release $VERSION (coordinated)"
+            git push origin "$VERSION"
+          '
+
+      - name: Sync monorepo pin commit
+        run: |
+          git add -A
+          git commit -m "release: $VERSION 協調版本發佈" || echo "Nothing to commit"
+          git tag "${{ inputs.version }}"
+          git push origin main --tags
