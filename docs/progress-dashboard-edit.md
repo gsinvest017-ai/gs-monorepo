@@ -14,9 +14,9 @@
 | # | 標題 | 狀態 |
 |---|------|------|
 | M1 | 進度檔 + `configs/overrides.json` 初始化 | ✅ |
-| M2 | `server.py` 擴充（overrides CRUD + start/stop endpoints） | ⬜ |
-| M3 | `app.js` + `style.css` + `index.html` 更新 | ⬜ |
-| M4 | 收尾 + smoke test | ⬜ |
+| M2 | `server.py` 擴充（overrides CRUD + start/stop endpoints） | ✅ |
+| M3 | `app.js` + `style.css` + `index.html` 更新 | ✅ |
+| M4 | 收尾 + smoke test | ✅ |
 
 ---
 
