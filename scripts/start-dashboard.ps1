@@ -2,15 +2,17 @@
 # scripts/start-dashboard.ps1 — 啟動 GS Service Monitor Dashboard
 #
 # 用法：
-#   .\scripts\start-dashboard.ps1                  # http://0.0.0.0:9000
+#   .\scripts\start-dashboard.ps1                       # http://0.0.0.0:9000
 #   .\scripts\start-dashboard.ps1 -Port 9001
-#   .\scripts\start-dashboard.ps1 -Open            # 啟動後自動開瀏覽器
-#   .\scripts\start-dashboard.ps1 -Detach          # 背景執行（記錄 PID）
+#   .\scripts\start-dashboard.ps1 -BindHost 127.0.0.1  # 僅本機
+#   .\scripts\start-dashboard.ps1 -Open                 # 啟動後自動開瀏覽器
+#   .\scripts\start-dashboard.ps1 -Detach               # 背景執行（記錄 PID）
+# Note: $Host 是 PowerShell 內建唯讀變數，故用 -BindHost。
 
 [CmdletBinding()]
 param(
-    [int]$Port    = 9000,
-    [string]$Host = "0.0.0.0",
+    [int]$Port        = 9000,
+    [string]$BindHost = "0.0.0.0",
     [switch]$Open,
     [switch]$Detach
 )
@@ -31,7 +33,7 @@ if (-not $py) {
     exit 1
 }
 
-$pyArgs = @($ServerPy, "--port", $Port, "--host", $Host)
+$pyArgs = @($ServerPy, "--port", $Port, "--host", $BindHost)
 
 $localUrl = "http://127.0.0.1:$Port/"
 $lanUrl   = "http://192.168.0.249:$Port/"
@@ -39,7 +41,7 @@ $lanUrl   = "http://192.168.0.249:$Port/"
 Write-Host ""
 Write-Host "  ◆ GS Service Monitor" -ForegroundColor DarkYellow
 Write-Host ("  local   : " + $localUrl)
-Write-Host ("  LAN     : " + ($Host -eq "0.0.0.0" ? $lanUrl : "(loopback-only)"))
+Write-Host ("  LAN     : " + ($BindHost -eq "0.0.0.0" ? $lanUrl : "(loopback-only)"))
 Write-Host "  (Ctrl-C to stop)"
 Write-Host ""
 
