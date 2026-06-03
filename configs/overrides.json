@@ -1,0 +1,4 @@
+{
+  "_host_presets": ["local", "local-wsl", "gb10", "dell"],
+  "services": {}
+}
