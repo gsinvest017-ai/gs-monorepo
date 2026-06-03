@@ -36,7 +36,7 @@ SERVICES_JSON  = REPO_ROOT / "configs" / "services.json"
 RUN_DIR        = REPO_ROOT / "run"
 
 REFRESH_SECS   = 5      # background refresh interval
-TCP_TIMEOUT    = 1.5    # seconds
+TCP_TIMEOUT    = 0.5    # seconds (short: LAN connect-refused is instant; only timeouts matter)
 
 log = logging.getLogger("gs.monitor")
 
@@ -225,7 +225,7 @@ def main() -> None:
     srv = ThreadingHTTPServer((args.host, args.port), Handler)
     log.info("GS Service Monitor → http://%s:%d/", args.host, args.port)
     log.info("monitoring %d services  (refresh every %ds)",
-             len(json.loads(SERVICES_JSON.read_text())["services"]), args.refresh)
+             len(json.loads(SERVICES_JSON.read_text(encoding="utf-8"))["services"]), args.refresh)
     log.info("Ctrl-C to stop")
     try:
         srv.serve_forever()

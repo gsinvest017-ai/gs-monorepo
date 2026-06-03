@@ -44,6 +44,26 @@ git submodule update --init --recursive
 .\scripts\sync-pins.ps1 -Message "chore: sync 2025-06-02"
 ```
 
+## Service Monitor Dashboard
+
+監控所有 submodule server 的 prod/test 運行狀態（port 探測 + PID 追蹤）。
+
+```powershell
+# 啟動 dashboard（前景，port 9000）
+.\scripts\start-dashboard.ps1
+
+# 啟動並自動開瀏覽器
+.\scripts\start-dashboard.ps1 -Open
+
+# 背景執行
+.\scripts\start-dashboard.ps1 -Detach
+```
+
+Dashboard 位於 `http://localhost:9000/` — 每 5 秒自動重整。
+顯示欄位：服務名稱 / Env(prod|test) / Host IP / Port / 狀態 / PID / 延遲 / 開啟連結。
+
+---
+
 ## 生產/測試環境分離
 
 各 server 型 submodule 可透過 monorepo 層腳本以不同 port 分別啟動，
