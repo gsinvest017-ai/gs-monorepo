@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GS Service Monitor</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <span class="topbar__brand">
+      <span class="logo">◆</span>
+      <span class="brand-text">GS <span class="brand-accent">Service Monitor</span></span>
+    </span>
+    <div class="topbar__meta">
+      <span class="refresh-badge" id="refresh-badge">–</span>
+      <span class="updated-at" id="updated-at">–</span>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="summary-bar" id="summary-bar">
+    <!-- injected by JS -->
+  </section>
+
+  <div class="gs-divider"></div>
+
+  <section class="services-section">
+    <table class="services-table" id="services-table">
+      <thead>
+        <tr>
+          <th>服務</th>
+          <th>Env</th>
+          <th>Host&nbsp;IP</th>
+          <th>Port</th>
+          <th>狀態</th>
+          <th>PID</th>
+          <th class="col-latency">延遲</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="services-tbody">
+        <tr><td colspan="8" class="loading-cell">載入中…</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>GS Monorepo — <a href="/api/status" target="_blank">raw JSON</a></span>
+  <span id="footer-counts">–</span>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
