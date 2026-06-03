@@ -1,0 +1,76 @@
+{
+  "_comment": "Dashboard service registry — mirrors configs/services.ps1 port/IP data. Read by dashboard/server.py.",
+  "_schema": "path / host_ip / server_port aligned with gs-gh-summary repo_paths panel",
+  "version": "1.0",
+  "host_name": "本機 (windows)",
+  "host_ip_lan": "192.168.0.249",
+  "dashboard_port": 9000,
+
+  "services": {
+    "gs-trading-portal": {
+      "repo": "gsinvest017-ai/gs-trading-portal",
+      "sub_path": "gs-trading-portal",
+      "description": "交易入口 Genesis gold UI",
+      "prod": { "port": 8123, "host_ip": "192.168.0.249" },
+      "test": { "port": 8223, "host_ip": "127.0.0.1" }
+    },
+
+    "gs-gh-summary": {
+      "repo": "gsinvest017-ai/gs-gh-summary",
+      "sub_path": "gs-gh-summary",
+      "description": "GitHub 活動摘要看板",
+      "prod": { "port": 8790, "host_ip": "192.168.0.249" },
+      "test": { "port": 8890, "host_ip": "127.0.0.1" }
+    },
+
+    "tw-news-board": {
+      "repo": "gsinvest017-ai/tw-news-board",
+      "sub_path": "tw-news-board",
+      "description": "台股期貨消息面看板",
+      "prod": { "port": 8787, "host_ip": "192.168.0.249" },
+      "test": { "port": 8887, "host_ip": "127.0.0.1" }
+    },
+
+    "tw-sentiment-radar": {
+      "repo": "gsinvest017-ai/tw-sentiment-radar",
+      "sub_path": "tw-sentiment-radar",
+      "description": "台股情緒雷達（需搭配 tw-news-board）",
+      "prod": { "port": 8788, "host_ip": "192.168.0.249" },
+      "test": { "port": 8888, "host_ip": "127.0.0.1" }
+    },
+
+    "gs-risk-manager": {
+      "repo": "gsinvest017-ai/gs-risk-manager",
+      "sub_path": "gs-risk-manager",
+      "description": "風險管理 dashboard",
+      "prod": { "port": 5066, "host_ip": "192.168.0.249" },
+      "test": { "port": 5166, "host_ip": "127.0.0.1" }
+    },
+
+    "autogo": {
+      "repo": "gsinvest017-ai/autogo",
+      "sub_path": "autogo",
+      "description": "Windows 桌面螢幕 agent",
+      "prod": { "port": 8765, "host_ip": "192.168.0.249" },
+      "test": { "port": 8865, "host_ip": "127.0.0.1" }
+    },
+
+    "gs-scraper": {
+      "repo": "gsinvest017-ai/gs-scraper",
+      "sub_path": "gs-scraper",
+      "description": "QUANTDATA 搜尋 UI",
+      "_note": "test=null: ui/search/app.py L262 hardcodes port 5050",
+      "prod": { "port": 5050, "host_ip": "0.0.0.0" },
+      "test": null
+    },
+
+    "trading-SySTEM": {
+      "repo": "gsinvest017-ai/trading-SySTEM",
+      "sub_path": "trading-SySTEM",
+      "description": "實盤交易系統 (Streamlit UI)",
+      "_note": "test: Streamlit only on 8601; KGI/sim backends on prod ports",
+      "prod": { "port": 8501, "host_ip": "192.168.0.249" },
+      "test": { "port": 8601, "host_ip": "127.0.0.1" }
+    }
+  }
+}
