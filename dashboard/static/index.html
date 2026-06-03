@@ -22,11 +22,7 @@
 </header>
 
 <main class="layout">
-
-  <section class="summary-bar" id="summary-bar">
-    <!-- injected by JS -->
-  </section>
-
+  <section class="summary-bar" id="summary-bar"></section>
   <div class="gs-divider"></div>
 
   <section class="services-section">
@@ -35,26 +31,29 @@
         <tr>
           <th>服務</th>
           <th>Env</th>
-          <th>Host&nbsp;IP</th>
+          <th>主機名稱</th>
+          <th>Host IP</th>
           <th>Port</th>
           <th>狀態</th>
           <th>PID</th>
           <th class="col-latency">延遲</th>
-          <th></th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody id="services-tbody">
-        <tr><td colspan="8" class="loading-cell">載入中…</td></tr>
+        <tr><td colspan="9" class="loading-cell">載入中…</td></tr>
       </tbody>
     </table>
   </section>
-
 </main>
 
 <footer class="footer">
   <span>GS Monorepo — <a href="/api/status" target="_blank">raw JSON</a></span>
   <span id="footer-counts">–</span>
 </footer>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
 
 <script src="/static/app.js"></script>
 </body>
