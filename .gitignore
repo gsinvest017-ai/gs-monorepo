@@ -4,3 +4,6 @@ Thumbs.db
 __pycache__/
 node_modules/
 .env
+
+# prod/test 環境分離 — 執行期暫存（PID / log）
+run/

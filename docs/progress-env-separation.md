@@ -19,9 +19,9 @@
 | # | 標題 | 預期產出 | 狀態 |
 |---|------|---------|------|
 | M1 | 探索 + 進度檔 | 此檔 + 服務清單 | ✅ 完成 |
-| M2 | 服務定義 + env files | `configs/services.ps1`、`envs/prod/*.env`、`envs/test/*.env` | ⬜ |
-| M3 | 啟動腳本 | `scripts/start-env.ps1`、`stop-env.ps1`、`status-env.ps1` | ⬜ |
-| M4 | 收尾 | `.gitignore` + `README.md` 更新 | ⬜ |
+| M2 | 服務定義 + env files | `configs/services.ps1`、`envs/prod/*.env`、`envs/test/*.env` | ✅ 完成 |
+| M3 | 啟動腳本 | `scripts/start-env.ps1`、`stop-env.ps1`、`status-env.ps1` | ✅ 完成 |
+| M4 | 收尾 | `.gitignore` + `README.md` 更新 | ✅ 完成 |
 
 ---
 
