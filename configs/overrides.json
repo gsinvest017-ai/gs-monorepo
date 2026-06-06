@@ -1,4 +1,37 @@
 {
-  "_host_presets": ["local", "local-wsl", "gb10", "dell"],
-  "services": {}
+  "_host_presets": [
+    "local",
+    "local-wsl",
+    "gb10",
+    "dell"
+  ],
+  "services": {
+    "gs-trading-portal": {
+      "prod": {
+        "host_ip": "192.168.0.249"
+      }
+    },
+    "autogo": {
+      "test": {
+        "host_ip": "192.168.0.249"
+      },
+      "prod": {
+        "host_ip": "192.168.0.249"
+      }
+    },
+    "gs-gh-summary": {
+      "prod": {
+        "host_ip": "192.168.0.249"
+      },
+      "test": {
+        "host_ip": "192.168.0.249"
+      }
+    },
+    "gs-scraper": {
+      "prod": {
+        "host_name": "local-wsl",
+        "host_ip": "192.168.0.249"
+      }
+    }
+  }
 }
