@@ -13,7 +13,7 @@ jobs:
     outputs:
       matrix: ${{ steps.detect.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: false   # only need .gitmodules for detection
 
@@ -42,7 +42,7 @@ jobs:
         submodule: ${{ fromJson(needs.changes.outputs.matrix) }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: false
 
