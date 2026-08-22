@@ -1,3 +1,10 @@
+---
+type: progress
+updated: 2026-06-03
+repos: [gs-monorepo]
+owner: GS Invest
+---
+
 # Dashboard 可編輯欄位 + Start/Stop — 進度追蹤
 
 ## 目標

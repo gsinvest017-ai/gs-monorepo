@@ -1,3 +1,10 @@
+---
+type: progress
+updated: 2026-06-02
+repos: [gs-monorepo]
+owner: GS Invest
+---
+
 # gs-monorepo 完整建立進度
 
 ## 目標

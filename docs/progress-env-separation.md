@@ -1,3 +1,10 @@
+---
+type: progress
+updated: 2026-06-03
+repos: [gs-monorepo]
+owner: GS Invest
+---
+
 # 生產/測試環境分離 — 進度追蹤
 
 ## 目標
